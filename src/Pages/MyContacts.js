@@ -21,7 +21,7 @@ const MyContact = () => {
         setIsLoading(true);
         const fetchData = async() => {
             try {
-                const res = await fetch(`http://localhost:5000/api/mycontacts`, {
+                const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/api/mycontacts`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -46,7 +46,7 @@ const MyContact = () => {
     const deleteContact = async(id) => {
         if(window.confirm("Are you sure you want to delete the contact?")){
             try{ 
-                const res = await fetch(`http://localhost:5000/api/delete/${id}`, {
+                const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/api/delete/${id}`, {
                         method: "DELETE",
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem("token")}`

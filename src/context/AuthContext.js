@@ -4,6 +4,8 @@ import ToastContext from "./ToastContext";
 
 const AuthContext = createContext();
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 export const AuthContextProvider = ({ children }) => {
     const navigate = useNavigate();
     const { toast } = useContext(ToastContext);
@@ -15,7 +17,7 @@ export const AuthContextProvider = ({ children }) => {
 
     const isLoggedIn = async() => {
         try {
-            const res = await fetch(`http://localhost:5000/api/me`, {
+            const res = await fetch(`${API_URL}/api/me`, {
                 method: 'GET',
                 headers: {
                     Authorization: `bearer: ${localStorage.getItem("token")}`
@@ -36,7 +38,7 @@ export const AuthContextProvider = ({ children }) => {
     //login
     const loginUser = async(userData) => {
         try {
-            const res = await fetch(`http://localhost:5000/api/login`, {
+            const res = await fetch(`${API_URL}/api/login`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -61,7 +63,7 @@ export const AuthContextProvider = ({ children }) => {
     //register
     const registerUser = async(userData) => {
         try {
-            const res = await fetch(`http://localhost:5000/api/register`, {
+            const res = await fetch(`${API_URL}/api/register`, {
                 method: 'POST',
                 headers: { 
                     "Content-Type": "application/json"
@@ -83,7 +85,7 @@ export const AuthContextProvider = ({ children }) => {
     //create contact
     const createContact = async(userData) => {
         try {
-            const res = await fetch(`http://localhost:5000/api/contact`, {
+            const res = await fetch(`${API_URL}/api/contact`, {
                 method: 'POST',
                 headers: {
                     "Content-type": "application/json",
@@ -105,7 +107,7 @@ export const AuthContextProvider = ({ children }) => {
     //edit contact
     const editContact = async(id, userData) => {
         try{
-            const res = await fetch(`http://localhost:5000/api/contact`, {
+            const res = await fetch(`${API_URL}/api/contact`, {
                 method: 'PUT',
                 headers: {
                     "Content-type": "application/json",
